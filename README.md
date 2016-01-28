@@ -101,7 +101,7 @@ Pobieranie wiadomości przychodzących
         s = Serwersms.new('username','passwd')
         
         params = { 'phone': '500000001' }          
-        puts s.messages.recived('full',params)
+        puts s.messages.recived('eco',params)
 
     rescue Exception=>e
       puts e.message
