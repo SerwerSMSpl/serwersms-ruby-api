@@ -17,7 +17,7 @@ Przykładowe wywołanie
           s = Serwersms.new('username','passwd')
           
           params = { details: true, test: 1 }
-          puts s.templates.delete("12243") 
+          puts s.messages.sendSms('500600700','text','INFORMACJA',params)
 
         rescue Exception=>e
           puts e.message
@@ -32,12 +32,12 @@ Wysyłka SMS
           
             # SMS FULL
           
-            puts s.messages.sendSms('500600700','text','Informacja',params)
+            puts s.messages.sendSms('500600700','text','INFORMACJA',params)
           
             # SMS ECO
           
             puts s.messages.sendSms('500600700','text',nil,params)
-          
+          	
             # VOICE from text   
           
             params['text'] = 'przykladowy tekst'
@@ -57,10 +57,23 @@ Wysyłka spersonalizowanych SMS
     begin
          s = Serwersms.new('username','passwd')
           
-        params = { details: true }
-        messages = '500600700:test]|[500600701:test1]|[500600702:test3';
-        
-        puts s.messages.sendPersonalized(messages,nil,params)
+         params = { details: true }
+         messages = [
+		    {
+		      "phone"=>"500600700",
+		      "text"=>"test"
+		    },
+		    {
+		      "phone"=>"500600701",
+		      "text"=>"test1"
+		    },
+		    {
+		      "phone"=>"500600702",
+		      "text"=>"test3"
+		    }
+		 ]
+
+         puts s.messages.sendPersonalized(messages,nil,params)
           
     rescue Exception=>e
       puts e.message
@@ -73,9 +86,8 @@ Pobieranie raportów doręczeń
     begin
         s = Serwersms.new('username','passwd')
         
-        params = { details: true }  
-        params['id'] = '78f8bd0d55'
-        
+        params = { 'id': '78f8bd0d55' }    
+              
         puts s.messages.reports(params)
           
     rescue Exception=>e
@@ -88,9 +100,7 @@ Pobieranie wiadomości przychodzących
     begin
         s = Serwersms.new('username','passwd')
         
-        params = { details: true }  
-        params['phone'] = '500000001'
-        
+        params = { 'phone': '500000001' }          
         puts s.messages.recived('full',params)
 
     rescue Exception=>e
@@ -99,7 +109,7 @@ Pobieranie wiadomości przychodzących
 ```
 ## Wymagania
 
-ruby ver. 1.9
+Ruby ver. 1.9
 
 ## Dokumentacja
 http://dev.serwersms.pl
