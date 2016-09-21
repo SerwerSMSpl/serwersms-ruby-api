@@ -1,7 +1,8 @@
 class Serwersms
 
   @@api_url = 'http://api2.serwersms.pl/'
-  @format = 'json';
+  @format   = 'json'
+  @@system   = 'client_ruby'
   attr :messages, true
   attr :files, true
   attr :premium, true
@@ -42,9 +43,10 @@ class Serwersms
       req = Net::HTTP::Post.new(uri.path,{'Content-Type' => 'application/json'})
       params['username'] = @username
       params['password'] = @password
+      params['system']   = @@system
       req.body = params.to_json
       res = https.request(req)
-
+      
       return res.body
   end
 end
