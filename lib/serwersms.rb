@@ -1,6 +1,6 @@
 class Serwersms
 
-  @@api_url = 'http://api2.serwersms.pl/'
+  @@api_url = 'https://api2.serwersms.pl/'
   @format   = 'json'
   @@system   = 'client_ruby'
   attr :messages, true
@@ -40,6 +40,7 @@ class Serwersms
   def call(url, params = {})
       uri = URI.parse(@@api_url+url)
       https = Net::HTTP.new(uri.host,uri.port)
+      https.use_ssl = true
       req = Net::HTTP::Post.new(uri.path,{'Content-Type' => 'application/json'})
       params['username'] = @username
       params['password'] = @password
