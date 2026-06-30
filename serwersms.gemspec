@@ -1,16 +1,14 @@
 Gem::Specification.new do |s|
-s.name = "serwersms"
-s.version = '0.0.1'
-s.date = '2016-01-28'
-s.authors = ["SerwerSMS"]
-s.email = ["biuro@serwersms.pl"]
-s.summary = "Klient Ruby do komunikacji zdalnej z API v2 SerwerSMS.pl"
-s.description = ""
-s.homepage = "https://github.com/SerwerSMSpl/"
-s.license       = ""
-s.required_ruby_version = '>= 1.9.2'
-s.files = Dir["{lib}/**/*"]
+  s.name        = 'serwersms'
+  s.version     = '2.0.0'
+  s.authors     = ['SerwerSMS']
+  s.email       = ['biuro@serwersms.pl']
+  s.summary     = 'Klient Ruby do komunikacji zdalnej z API v2 SerwerSMS.pl'
+  s.homepage    = 'https://github.com/SerwerSMSpl/serwersms-ruby-api'
+  s.license     = 'Apache-2.0'
 
-s.require_paths = ["lib","lib/library"]
+  s.required_ruby_version = '>= 4.0'
 
+  s.files         = Dir['lib/**/*.rb']
+  s.require_paths = ['lib']
 end
